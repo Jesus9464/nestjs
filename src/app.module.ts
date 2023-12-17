@@ -7,8 +7,7 @@ import { OrderController } from './controllers/orders/orders.controller';
 import { UserController } from './controllers/users/users.controller';
 import { CustomerController } from './controllers/customers/customers.controller';
 import { BrandsController } from './controllers/brands/brands.controller';
-import { ProductsService } from './services/products.service';
-import { ProductsService } from './controllers/products/products.service';
+import { ProductsService } from './services/products/products.service';
 
 @Module({
   imports: [],
