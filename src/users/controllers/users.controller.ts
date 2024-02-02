@@ -43,4 +43,10 @@ export class UsersController {
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.usersService.remove(+id);
   }
+
+  //orders
+  @Get(':idUser/orders')
+  getOrders(@Param('idUser', ParseIntPipe) idUser: number) {
+    return this.usersService.getOrdersByUser(idUser);
+  }
 }
