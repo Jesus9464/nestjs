@@ -6,6 +6,7 @@ import { BrandsModule } from './brands/brands.module';
 import { CustomersModule } from './customers/customers.module';
 import { UsersModule } from './users/users.module';
 import { CategoriesModule } from './categories/categories.module';
+import { API_KEY } from './common/constans';
 
 @Module({
   imports: [
@@ -16,6 +17,12 @@ import { CategoriesModule } from './categories/categories.module';
     CategoriesModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: 'API_KEY',
+      useValue: API_KEY,
+    },
+  ],
 })
 export class AppModule {}

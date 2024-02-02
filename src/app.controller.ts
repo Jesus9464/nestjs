@@ -7,7 +7,7 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    return 'Hola Jesus';
+    return this.appService.getHello();
   }
 
   //podemos crear rutas con slash "/" o sin slash ya que nest intuye qe es una ruta a excepcion de express
