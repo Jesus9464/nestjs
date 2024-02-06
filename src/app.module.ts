@@ -10,11 +10,12 @@ import { CategoriesModule } from './categories/categories.module';
 import { lastValueFrom } from 'rxjs';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
+import { enviroment } from './common/config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env',
+      envFilePath: enviroment[process.env.NODE_ENV] || '.env',
       isGlobal: true,
     }),
     BrandsModule,
