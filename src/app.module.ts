@@ -7,8 +7,8 @@ import { BrandsModule } from './brands/brands.module';
 import { CustomersModule } from './customers/customers.module';
 import { UsersModule } from './users/users.module';
 import { CategoriesModule } from './categories/categories.module';
-import { API_KEY } from './common/constans';
 import { lastValueFrom } from 'rxjs';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
@@ -18,14 +18,11 @@ import { lastValueFrom } from 'rxjs';
     UsersModule,
     CategoriesModule,
     HttpModule,
+    DatabaseModule,
   ],
   controllers: [AppController],
   providers: [
     AppService,
-    {
-      provide: 'API_KEY',
-      useValue: API_KEY,
-    },
     {
       provide: 'TASK',
       useFactory: async (http: HttpService) => {
