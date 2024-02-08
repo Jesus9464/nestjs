@@ -11,11 +11,13 @@ import { lastValueFrom } from 'rxjs';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { enviroment } from './common/config';
+import config from './common/config/types';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: enviroment[process.env.NODE_ENV] || '.env',
+      load: [config],
       isGlobal: true,
     }),
     BrandsModule,
