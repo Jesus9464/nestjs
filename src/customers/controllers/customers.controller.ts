@@ -1,9 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Controller, NotFoundException } from '@nestjs/common';
 
 import { Customer } from '../entities/customer.entity';
 import { CreateCustomerDto, UpdateCustomerDto } from '../dtos/customer.dto';
+import { ApiTags } from '@nestjs/swagger';
 
-@Injectable()
+@ApiTags('brands')
+@Controller('brands')
 export class CustomersService {
   private counterId = 1;
   private customers: Customer[] = [

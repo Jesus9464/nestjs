@@ -5,7 +5,7 @@ import {
   IsNotEmpty,
   IsPositive,
 } from 'class-validator';
-import { PartialType } from '@nestjs/mapped-types';
+import { PartialType } from '@nestjs/swagger';
 
 //TODO: para que sean obligatortias deben de teNER EL isNotEmpty
 

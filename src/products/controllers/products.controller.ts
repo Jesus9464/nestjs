@@ -10,14 +10,16 @@ import {
 import { ProductsService } from '../services/products.service';
 import { ParseIntPipe } from '../../common/parse-int/parse-int.pipe';
 import { CreateProductsDto, updateProductsDto } from '../dtos/products.dto';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 //TODO: para enviar un status code personalizado es con @HttpCode(HttpStatus.ACCEPTED)
-
+@ApiTags('products')
 @Controller('products')
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   @Get()
+  @ApiOperation({ summary: 'list of products' })
   products() {
     return this.productsService.finAll();
   }
