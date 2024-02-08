@@ -1,5 +1,9 @@
+import { lastValueFrom } from 'rxjs';
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { HttpModule, HttpService } from '@nestjs/axios';
+import * as Joi from 'joi';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ProductsModule } from './products/products.module';
@@ -7,9 +11,7 @@ import { BrandsModule } from './brands/brands.module';
 import { CustomersModule } from './customers/customers.module';
 import { UsersModule } from './users/users.module';
 import { CategoriesModule } from './categories/categories.module';
-import { lastValueFrom } from 'rxjs';
 import { DatabaseModule } from './database/database.module';
-import { ConfigModule } from '@nestjs/config';
 import { enviroment } from './common/config';
 import config from './common/config/types';
 
@@ -19,6 +21,11 @@ import config from './common/config/types';
       envFilePath: enviroment[process.env.NODE_ENV] || '.env',
       load: [config],
       isGlobal: true,
+      validationSchema: Joi.object({
+        API_KEY: Joi.number().required(),
+        DATABASE_NAME: Joi.string().required(),
+        DTABASE_PORT: Joi.number().required(),
+      }),
     }),
     BrandsModule,
     CustomersModule,
