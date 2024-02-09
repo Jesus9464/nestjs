@@ -21,6 +21,12 @@ export class UsersService {
       password: '12345',
       role: 'admin',
     },
+    {
+      id: 2,
+      email: 'brand888@gmail.com',
+      password: 'password123',
+      role: 'admin',
+    },
   ];
 
   findAll() {
