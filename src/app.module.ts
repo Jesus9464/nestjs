@@ -24,7 +24,6 @@ import config from './common/config/types';
       validationSchema: Joi.object({
         API_KEY: Joi.number().required(),
         DATABASE_NAME: Joi.string().required(),
-        DTABASE_PORT: Joi.number().required(),
       }),
     }),
     BrandsModule,
