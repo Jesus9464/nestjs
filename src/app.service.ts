@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
-import config from './common/config/types';
+import config from './common/config/envs';
 import { Client } from 'pg';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class AppService {
 
   getHello(): string {
     const apiKey = this.configService.apiKey;
-    const dataBaseName = this.configService.database.name;
+    const dataBaseName = this.configService.postgres.dbName;
     return `Hello World! ${apiKey}, ${dataBaseName}`;
   }
 

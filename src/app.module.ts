@@ -13,7 +13,7 @@ import { UsersModule } from './users/users.module';
 import { CategoriesModule } from './categories/categories.module';
 import { DatabaseModule } from './database/database.module';
 import { enviroment } from './common/config';
-import config from './common/config/types';
+import config from './common/config/envs';
 
 @Module({
   imports: [
@@ -23,7 +23,11 @@ import config from './common/config/types';
       isGlobal: true,
       validationSchema: Joi.object({
         API_KEY: Joi.number().required(),
-        DATABASE_NAME: Joi.string().required(),
+        POSTGRES_DB: Joi.string().required(),
+        POSTGRES_USER: Joi.string().required(),
+        POSTGRES_PASSWORD: Joi.number().required(),
+        POSTGRES_PORT: Joi.number().required(),
+        POSTGRES_HOST: Joi.string().required(),
       }),
     }),
     BrandsModule,
