@@ -22,4 +22,9 @@ export class AppController {
   newRute(): string {
     return 'soy una ruta con slash';
   }
+
+  @Get('/task')
+  getTask() {
+    return this.appService.getTask();
+  }
 }
