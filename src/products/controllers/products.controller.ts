@@ -1,15 +1,15 @@
 import {
-  Body,
+  // Body,
   Controller,
-  Delete,
+  // Delete,
   Get,
   Param,
-  Post,
-  Put,
+  // Post,
+  // Put,
 } from '@nestjs/common';
 import { ProductsService } from '../services/products.service';
 import { ParseIntPipe } from '../../common/parse-int/parse-int.pipe';
-import { CreateProductsDto, updateProductsDto } from '../dtos/products.dto';
+// import { CreateProductsDto, updateProductsDto } from '../dtos/products.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 //TODO: para enviar un status code personalizado es con @HttpCode(HttpStatus.ACCEPTED)
@@ -29,22 +29,22 @@ export class ProductsController {
     return this.productsService.findOne(productId);
   }
 
-  @Post()
-  create(@Body() payload: CreateProductsDto) {
-    return this.productsService.create(payload);
-  }
+  // @Post()
+  // create(@Body() payload: CreateProductsDto) {
+  //   return this.productsService.create(payload);
+  // }
 
-  //TODO: para un campo es un patch y muchos son put el put devuelve una respuesta el patch no devuelve nada
-  @Put(':productId')
-  update(
-    @Param('productId', ParseIntPipe) productId: number,
-    @Body() payload: updateProductsDto,
-  ) {
-    return this.productsService.update(productId, payload);
-  }
+  // //TODO: para un campo es un patch y muchos son put el put devuelve una respuesta el patch no devuelve nada
+  // @Put(':productId')
+  // update(
+  //   @Param('productId', ParseIntPipe) productId: number,
+  //   @Body() payload: updateProductsDto,
+  // ) {
+  //   return this.productsService.update(productId, payload);
+  // }
 
-  @Delete(':productId')
-  delete(@Param('productId', ParseIntPipe) productId: number) {
-    return this.productsService.delete(productId);
-  }
+  // @Delete(':productId')
+  // delete(@Param('productId', ParseIntPipe) productId: number) {
+  //   return this.productsService.delete(productId);
+  // }
 }

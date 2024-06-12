@@ -20,8 +20,8 @@ import config from '../common/config/envs';
           username: user,
           password,
           database: dbName,
-          entities: [],
           synchronize: true,
+          autoLoadEntities: true,
         };
       },
       inject: [config.KEY],

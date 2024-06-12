@@ -3,7 +3,6 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { User } from '../entities/user.entity';
 import { CreateUserDto, UpdateUserDto } from '../dtos/user.dto';
 import { ProductsService } from '../../products/services/products.service';
-import { Order } from '../entities/order.entity';
 import { ConfigService } from '@nestjs/config';
 import { Client } from 'pg';
 
@@ -77,12 +76,12 @@ export class UsersService {
   }
 
   //orders
-  getOrdersByUser(id: number): Order {
+  async getOrdersByUser(id: number) {
     const user = this.findOne(id);
     return {
       date: new Date(),
       user,
-      products: this.productsService.finAll(),
+      products: await this.productsService.finAll(),
     };
   }
 
