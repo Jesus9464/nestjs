@@ -1,60 +1,48 @@
-import { Controller, NotFoundException } from '@nestjs/common';
-
-import { Customer } from '../entities/customer.entity';
-import { CreateCustomerDto, UpdateCustomerDto } from '../dtos/customer.dto';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('brands')
-@Controller('brands')
-export class CustomersService {
-  private counterId = 1;
-  private customers: Customer[] = [
-    {
-      id: 1,
-      name: 'Nicolas',
-      lastName: 'Molina',
-      phone: '3111111212',
-    },
-  ];
+import { CustomersService } from '../services/customers.service';
+import { CreateCustomerDto, UpdateCustomerDto } from '../dtos/customer.dto';
 
+@ApiTags('customers')
+@Controller('customers')
+export class CustomersController {
+  constructor(private customersService: CustomersService) {}
+
+  @Get()
   findAll() {
-    return this.customers;
+    return this.customersService.findAll();
   }
 
-  findOne(id: number) {
-    const customer = this.customers.find((item) => item.id === id);
-    if (!customer) {
-      throw new NotFoundException(`Customer #${id} not found`);
-    }
-    return customer;
+  @Get(':id')
+  get(@Param('id', ParseIntPipe) id: number) {
+    return this.customersService.findOne(id);
   }
 
-  create(data: CreateCustomerDto) {
-    this.counterId = this.counterId + 1;
-    const newCustomer = {
-      id: this.counterId,
-      ...data,
-    };
-    this.customers.push(newCustomer);
-    return newCustomer;
+  @Post()
+  create(@Body() payload: CreateCustomerDto) {
+    return this.customersService.create(payload);
   }
 
-  update(id: number, changes: UpdateCustomerDto) {
-    const customer = this.findOne(id);
-    const index = this.customers.findIndex((item) => item.id === id);
-    this.customers[index] = {
-      ...customer,
-      ...changes,
-    };
-    return this.customers[index];
+  @Put(':id')
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() payload: UpdateCustomerDto,
+  ) {
+    return this.customersService.update(id, payload);
   }
 
-  remove(id: number) {
-    const index = this.customers.findIndex((item) => item.id === id);
-    if (index === -1) {
-      throw new NotFoundException(`Customer #${id} not found`);
-    }
-    this.customers.splice(index, 1);
-    return true;
+  @Delete(':id')
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.customersService.remove(+id);
   }
 }
