@@ -19,7 +19,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "migrations:generate": "yarntypeorm -- migration:generate -n",
+    "migrations:generate": "yarn typeorm -- migration:generate -n",
     "migrations:run": "yarn typeorm -- migration:run",
     "migrations:show": "yarn typeorm -- migration:show",
     "migrations:drop": "yarn typeorm -- migration:drop"
