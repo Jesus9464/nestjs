@@ -36,6 +36,11 @@ export class CreateProductsDto {
   @IsNotEmpty()
   @ApiProperty()
   readonly image: string;
+
+  @IsPositive()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly brandId: number;
 }
 
 export class updateProductsDto extends PartialType(CreateProductsDto) {}

@@ -1,33 +1,40 @@
-// import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToOne,
+} from 'typeorm';
 
-// Entity();
-// export class Customer {
-//   @PrimaryGeneratedColumn()
-//   id: number;
-
-//   @Column({ type: 'varchar', length: 255 })
-//   name: string;
-
-//   @Column({ type: 'varchar', length: 255 })
-//   lastName: string;
-
-//   @Column({ type: 'number' })
-//   phone: string;
-// }
-
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from '../../users/entities/user.entity';
 
 @Entity()
 export class Customer {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', length: 255, unique: true })
+  @Column({ type: 'varchar', length: 255 })
   name: string;
 
-  @Column({ type: 'varchar', length: 255, unique: true })
+  @Column({ type: 'varchar', length: 255 })
   lastName: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', length: 255 })
   phone: string;
+
+  @CreateDateColumn({
+    type: 'timestamptz',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  createAt: Date;
+
+  @UpdateDateColumn({
+    type: 'timestamptz',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  updateAt: Date;
+
+  @OneToOne(() => User, (user) => user.customer, { nullable: true })
+  user: User;
 }
