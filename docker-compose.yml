@@ -4,9 +4,9 @@ services:
   postgres:
     image: postgres:13
     environment:
-      - POSTGRES_DB=my_db
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
       - '5432:5432'
     volumes:
@@ -15,7 +15,28 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     environment:
-      - PGADMIN_DEFAULT_EMAIL=root@admin.com
-      - PGADMIN_DEFAULT_PASSWORD=root
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
     ports:
       - '5050:80'
+
+  app:
+    build: .
+    environment:
+      - API_KEY=${API_KEY}
+      - TYPEORM_CONNECTION=${TYPEORM_CONNECTION}
+      - TYPEORM_HOST=${TYPEORM_HOST}
+      - TYPEORM_USERNAME=${TYPEORM_USERNAME}
+      - TYPEORM_PASSWORD=${TYPEORM_PASSWORD}
+      - TYPEORM_DATABASE=${TYPEORM_DATABASE}
+      - TYPEORM_PORT=${TYPEORM_PORT}
+      - TYPEORM_SYNCHRONIZE=${TYPEORM_SYNCHRONIZE}
+      - TYPEORM_LOGGING=${TYPEORM_LOGGING}
+      - TYPEORM_ENTITIES=${TYPEORM_ENTITIES}
+      - TYPEORM_MIGRATIONS=${TYPEORM_MIGRATIONS}
+      - TYPEORM_MIGRATIONS_DIR=${TYPEORM_MIGRATIONS_DIR}
+      - TYPEORM_MIGRATIONS_TABLE_NAME=${TYPEORM_MIGRATIONS_TABLE_NAME}
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
