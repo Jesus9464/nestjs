@@ -8,8 +8,10 @@ import { ProductsController } from './controllers/products.controller';
 import { ProductsService } from './services/products.service';
 import { Product } from './entities/product.entity';
 
+import { Category } from '../categories/entities/category.entity';
+
 @Module({
-  imports: [TypeOrmModule.forFeature([Product, Brand])],
+  imports: [TypeOrmModule.forFeature([Product, Brand, Category])],
   controllers: [ProductsController],
   // TODO: para los servicios con con providers
   providers: [ProductsService, BrandsService],
