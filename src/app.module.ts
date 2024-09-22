@@ -13,6 +13,7 @@ import { UsersModule } from './users/users.module';
 import { CategoriesModule } from './categories/categories.module';
 import { DatabaseModule } from './database/database.module';
 import { enviroment } from './common/config';
+import { OrderModule } from './order/order.module';
 import config from './common/config/envs';
 
 @Module({
@@ -37,6 +38,7 @@ import config from './common/config/envs';
     CategoriesModule,
     HttpModule,
     DatabaseModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [
