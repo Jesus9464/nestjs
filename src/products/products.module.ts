@@ -15,6 +15,6 @@ import { Category } from '../categories/entities/category.entity';
   controllers: [ProductsController],
   // TODO: para los servicios con con providers
   providers: [ProductsService, BrandsService],
-  exports: [ProductsService],
+  exports: [ProductsService, TypeOrmModule],
 })
 export class ProductsModule {}
