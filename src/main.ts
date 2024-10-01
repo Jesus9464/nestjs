@@ -13,6 +13,9 @@ async function bootstrap() {
       whitelist: true,
       //TODO: significa que va a colocar el problema al request le dice que el atributo no es valido
       forbidNonWhitelisted: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
     }),
   );
 

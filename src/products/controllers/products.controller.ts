@@ -6,10 +6,15 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { ProductsService } from '../services/products.service';
 import { ParseIntPipe } from '../../common/parse-int/parse-int.pipe';
-import { CreateProductsDto, updateProductsDto } from '../dtos/products.dto';
+import {
+  CreateProductsDto,
+  updateProductsDto,
+  FilterProductsDto,
+} from '../dtos/products.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 //TODO: para enviar un status code personalizado es con @HttpCode(HttpStatus.ACCEPTED)
@@ -20,8 +25,8 @@ export class ProductsController {
 
   @Get()
   @ApiOperation({ summary: 'list of products' })
-  products() {
-    return this.productsService.finAll();
+  products(@Query() params: FilterProductsDto) {
+    return this.productsService.finAll(params);
   }
 
   @Get(':productId')

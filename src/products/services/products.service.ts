@@ -3,7 +3,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { Product } from '../entities/product.entity';
-import { CreateProductsDto, updateProductsDto } from '../dtos/products.dto';
+import {
+  CreateProductsDto,
+  FilterProductsDto,
+  updateProductsDto,
+} from '../dtos/products.dto';
 
 import { Category } from '../../categories/entities/category.entity';
 
@@ -17,7 +21,16 @@ export class ProductsService {
     @InjectRepository(Category) private categoryRepo: Repository<Category>,
   ) {}
 
-  finAll() {
+  finAll(params?: FilterProductsDto) {
+    if (params) {
+      const { limit, offset } = params;
+      return this.productRepo.find({
+        relations: ['brand'],
+        take: limit,
+        skip: offset,
+      });
+    }
+
     return this.productRepo.find({ relations: ['brand'] });
   }
 
