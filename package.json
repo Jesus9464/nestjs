@@ -22,7 +22,7 @@
     "migrations:generate": "yarn typeorm -- migration:generate -n",
     "migrations:run": "yarn typeorm -- migration:run",
     "migrations:show": "yarn typeorm -- migration:show",
-    "migrations:drop": "yarn typeorm -- migration:drop"
+    "migrations:drop": "yarn typeorm -- schema:drop"
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.1",
